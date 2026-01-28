@@ -438,11 +438,7 @@ const App: React.FC = () => {
                 <img src="https://img.icons8.com/color/48/000000/pix.png" className="h-10" alt="Pix" />
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-gray-500 text-sm font-bold uppercase tracking-widest">
-                <div className="flex items-center justify-center gap-2"><Mail size={18} className="text-orange-500" /> [EMAIL_SUPORTE]</div>
-                <div className="flex items-center justify-center gap-2"><MapPin size={18} className="text-orange-500" /> [ENDERECO]</div>
-                <div className="flex items-center justify-center gap-2"><FileText size={18} className="text-orange-500" /> CNPJ: [CNPJ]</div>
-              </div>
+
 
               <div className="flex justify-center gap-10 text-xs text-gray-600 underline font-bold">
                 <a href="[LINK_TERMOS]" className="hover:text-orange-500 transition-colors">Termos de Uso</a>
