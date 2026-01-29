@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import {
   CheckCircle2,
@@ -20,16 +19,19 @@ import {
   FileText,
   Star,
   Sparkles,
-  X
+  X,
+  CreditCard,
+  DollarSign,
+  Heart
 } from 'lucide-react';
 
 // --- Shared Components ---
 
 // Barra de Urgência Fixa
 const UrgencyBanner = () => (
-  <div className="sticky top-0 z-50 bg-gradient-to-r from-red-600 to-red-800 text-white text-center py-3 px-4 shadow-lg flex items-center justify-center gap-2 font-bold text-xs md:text-sm tracking-wide uppercase">
+  <div className="sticky top-0 z-50 bg-gradient-to-r from-green-600 to-green-800 text-white text-center py-3 px-4 shadow-lg flex items-center justify-center gap-2 font-bold text-xs md:text-sm tracking-wide uppercase">
     <Zap size={16} className="text-yellow-300 animate-pulse" fill="currentColor" />
-    <span>Oferta Especial: Acesso Imediato + Garantia de 7 Dias</span>
+    <span>✨ O PRIMEIRO PASSO PARA UM CASAL SÁBIO</span>
   </div>
 );
 
@@ -43,7 +45,7 @@ const SocialProofToast = ({ name, visible }: { name: string; visible: boolean })
       </div>
       <div>
         <p className="text-gray-100 font-bold text-sm">{name}</p>
-        <p className="text-green-400 text-xs font-medium">acabou de comprar o manual!</p>
+        <p className="text-green-400 text-xs font-medium">acabou de garantir seu acesso!</p>
       </div>
     </div>
   );
@@ -60,39 +62,31 @@ const Section = ({ id, children, className = "", dark = true }: { id: string, ch
 const BuyButton = ({ showPrice = false }: { showPrice?: boolean }) => (
   <div className="flex flex-col items-center gap-6 w-full max-w-xl mx-auto">
     {showPrice && (
-      <div className="text-center w-full bg-gradient-to-r from-orange-500/10 via-orange-500/5 to-orange-500/10 p-6 rounded-3xl border border-orange-500/20">
-        <p className="text-gray-500 line-through text-sm mb-2 uppercase tracking-wider font-bold">De R$ 502,00 por apenas</p>
+      <div className="text-center w-full bg-gradient-to-r from-green-500/10 via-green-500/5 to-green-500/10 p-6 rounded-3xl border border-green-500/20">
+        <p className="text-gray-500 line-through text-sm mb-2 uppercase tracking-wider font-bold">De R$ 197,00 por apenas</p>
         <div className="flex items-baseline justify-center gap-3 mb-2">
-          <span className="text-2xl font-black text-gray-400">12x de</span>
-          <span className="text-5xl md:text-6xl font-black bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">R$ 6,73</span>
+          <span className="text-5xl md:text-6xl font-black bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent">R$ 67,00</span>
         </div>
-        <p className="text-lg text-orange-400 font-bold">Ou R$ 67,00 à vista no PIX</p>
-        <div className="mt-3 flex items-center justify-center gap-2 text-xs text-orange-300/80">
+        <p className="text-lg text-green-400 font-bold">ou até 9x no cartão</p>
+        <div className="mt-3 flex items-center justify-center gap-2 text-xs text-green-300/80">
           <Sparkles size={14} />
           <span className="font-semibold">Oferta por tempo limitado</span>
         </div>
       </div>
     )}
     <a
-      href="https://pay.hotmart.com/C104133503E"
-      className="relative group bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold text-lg md:text-xl py-5 px-10 rounded-full w-full text-center flex items-center justify-center gap-3 shadow-[0_10px_30px_rgba(249,115,22,0.4)] hover:shadow-[0_15px_40px_rgba(249,115,22,0.6)] transition-all duration-300 transform hover:-translate-y-1 active:scale-[0.98]"
+      href="https://pay.hotmart.com/Q104137511T"
+      className="relative group bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold text-lg md:text-xl py-5 px-10 rounded-full w-full text-center flex items-center justify-center gap-3 shadow-[0_10px_30px_rgba(34,197,94,0.4)] hover:shadow-[0_15px_40px_rgba(34,197,94,0.6)] transition-all duration-300 transform hover:-translate-y-1 active:scale-[0.98]"
     >
-      <span className="relative z-10">QUERO MEU MANUAL AGORA</span>
+      <span className="relative z-10">QUERO ORGANIZAR MEU DINHEIRO AGORA</span>
       <ArrowRight className="relative z-10 group-hover:translate-x-1 transition-transform" size={24} />
-      <div className="absolute inset-0 bg-gradient-to-r from-orange-400 to-orange-500 rounded-full blur-md opacity-40 group-hover:opacity-60 transition-opacity"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-green-500 rounded-full blur-md opacity-40 group-hover:opacity-60 transition-opacity"></div>
     </a>
     <div className="flex flex-wrap justify-center gap-4 text-[10px] md:text-xs font-bold uppercase tracking-widest text-gray-400">
       <span className="flex items-center gap-1.5"><Lock size={14} className="text-green-500" /> Compra 100% Segura</span>
       <span className="flex items-center gap-1.5"><ShieldCheck size={14} className="text-green-500" /> Garantia de 7 Dias</span>
-      <span className="flex items-center gap-1.5"><Zap size={14} className="text-orange-500" /> Acesso Imediato</span>
+      <span className="flex items-center gap-1.5"><Zap size={14} className="text-green-500" /> Acesso Imediato</span>
     </div>
-  </div>
-);
-
-const WhatsAppBubble = ({ text }: { text: string }) => (
-  <div className="bg-gradient-to-br from-slate-800 to-slate-900 p-6 rounded-3xl rounded-tl-none border border-slate-700/50 shadow-2xl relative hover:scale-[1.02] transition-transform duration-300">
-    <div className="absolute top-0 -left-3 w-0 h-0 border-t-[16px] border-t-slate-800 border-l-[16px] border-l-transparent"></div>
-    <p className="text-gray-200 text-base md:text-lg leading-relaxed font-medium">{text}</p>
   </div>
 );
 
@@ -113,122 +107,127 @@ const App: React.FC = () => {
     let timeoutId: ReturnType<typeof setTimeout>;
 
     const showNotification = () => {
-      // Pick random name
       const name = buyers[Math.floor(Math.random() * buyers.length)];
       setNotification({ name, visible: true });
 
-      // Hide after 3.5s
       setTimeout(() => {
         setNotification(prev => ({ ...prev, visible: false }));
       }, 3500);
 
-      // Schedule next notification (random 8s - 20s)
       const nextTime = Math.random() * 12000 + 8000;
       timeoutId = setTimeout(showNotification, nextTime);
     };
 
-    // First appearance after 5s
     timeoutId = setTimeout(showNotification, 5000);
 
     return () => clearTimeout(timeoutId);
   }, []);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white selection:bg-orange-500 selection:text-white antialiased">
+    <div className="min-h-screen bg-slate-950 text-white selection:bg-green-500 selection:text-white antialiased">
       <UrgencyBanner />
       <SocialProofToast name={notification.name} visible={notification.visible} />
 
-      {/* DOBRA 1: Headline */}
+      {/* DOBRA 1: Promessa Principal */}
       <Section id="dobra-1" className="text-center pt-20 md:pt-32 overflow-hidden relative">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-orange-500 opacity-[0.08] blur-[150px] pointer-events-none"></div>
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-green-500 opacity-[0.08] blur-[150px] pointer-events-none"></div>
 
-        <div className="inline-flex items-center gap-2 bg-orange-500/10 border border-orange-500/30 px-6 py-3 rounded-full text-orange-400 text-xs md:text-sm font-black uppercase tracking-[0.3em] mb-8 shadow-lg shadow-orange-500/10">
-          <Award size={18} className="animate-pulse" /> Manual de Cultura Comercial
+        <div className="inline-flex items-center gap-2 bg-green-500/10 border border-green-500/30 px-6 py-3 rounded-full text-green-400 text-xs md:text-sm font-black uppercase tracking-[0.3em] mb-8 shadow-lg shadow-green-500/10">
+          <Star size={18} className="animate-pulse" /> Sistema Financeiro para Casal
         </div>
 
         <h1 className="text-3xl md:text-5xl font-extrabold leading-tight mb-6 tracking-tight">
-          Organize, alinhe e faça<br />sua equipe <span className="bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">vender mais</span>.
+          A plataforma mais simples para vocês terem <span className="bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent">clareza total</span> das contas e pararem de brigar por dinheiro.
         </h1>
 
         <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-10 leading-relaxed font-medium">
-          O manual de cultura comercial definitivo, pronto para aplicar e acabar com a bagunça <span className="text-orange-400 font-bold">em 48h</span>.
+          Sem planilhas complexas de Excel. Um sistema online, simples e intuitivo para acessar do celular ou computador.
         </p>
 
-        {/* Mockup */}
+        {/* Mockup Placeholder */}
         <div className="relative mx-auto w-full max-w-4xl group cursor-default mb-8">
-          <div className="absolute -inset-6 bg-gradient-to-r from-orange-500 to-orange-600 rounded-[32px] blur-[60px] opacity-15 group-hover:opacity-25 transition duration-1000"></div>
-          <div className="relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl border border-slate-700/50 overflow-hidden shadow-2xl transform transition-transform group-hover:scale-[1.005]">
+          <div className="absolute -inset-6 bg-gradient-to-r from-green-500 to-green-600 rounded-[32px] blur-[60px] opacity-15 group-hover:opacity-25 transition duration-1000"></div>
+          <div className="relative bg-transparent rounded-3xl overflow-hidden flex items-center justify-center transform group-hover:scale-[1.005] transition-transform duration-500">
             <img
-              src="/images/full-stack.png"
-              alt="Manual de Cultura Comercial + Bônus"
-              className="w-full h-auto object-cover"
+              src="/images/hero-mockup.png"
+              alt="Dashboard da Planilha Financeira Casal em Dias"
+              className="w-full h-auto object-contain rounded-xl relative z-10 drop-shadow-2xl"
             />
-
-
           </div>
         </div>
       </Section>
 
+      {/* DOBRA 2: Prova Social */}
+      <Section id="dobra-2" dark={false}>
+        <div className="text-center mb-12">
+          <h2 className="text-3xl md:text-4xl font-black">Quem usa, parou de <span className="text-green-500">brigar por dinheiro</span></h2>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          {[
+            "Amor, finalmente sobrou dinheiro no fim do mês! Nem acredito.",
+            "A gente nem sabia onde estava gastando tanto com besteira. Agora tá tudo claro na tela.",
+            "Em 3 dias a gente já sabia exatamente o que cortar. Recomendo demais pra qualquer casal.",
+            "Salvou meu casamento. A gente só brigava por causa de cartão de crédito."
+          ].map((text, i) => (
+            <div key={i} className="bg-white text-slate-900 p-6 rounded-2xl rounded-tl-none shadow-xl border border-slate-200">
+              <p className="font-medium">"{text}"</p>
+            </div>
+          ))}
+        </div>
+      </Section>
 
-
-      {/* DOBRA 3: Vozes na Cabeça */}
+      {/* DOBRA 3: Pedra no Sapato */}
       <Section id="dobra-3">
-        <h2 className="text-4xl md:text-7xl font-black text-center mb-20 tracking-tight leading-tight">
-          Você se sente um <span className="bg-gradient-to-r from-orange-400 to-red-600 bg-clip-text text-transparent">escravo</span><br />da sua própria operação?
+        <h2 className="text-3xl md:text-5xl font-black text-center mb-20 tracking-tight leading-tight">
+          Você já se pegou <span className="bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent">pensando isso?</span>
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
           {[
-            '"Minha equipe até vende, mas cada um faz do seu jeito…"',
-            '"Quando eu paro de cobrar, tudo desanda…"',
-            '"Eu não tenho um padrão claro pra exigir nada…"',
-            '"Eu sinto que estou apagando incêndio todo santo dia…"',
-            '"Eu preciso de algo pronto e rápido, cansei de teoria…"',
-            '"Se eu não estiver em cima, ninguém faz nada direito…"'
+            '"Para onde foi todo o nosso dinheiro esse mês?"',
+            '"A gente trabalha tanto, ganha bem, mas nunca sobra nada."',
+            '"Será que ele(a) está gastando escondido de mim?"',
+            '"Não aguento mais esse clima pesado toda vez que chega um boleto."',
+            '"Desse jeito nunca vamos conseguir viajar ou trocar de carro."'
           ].map((voice, i) => (
-            <div key={i} className="bg-gradient-to-br from-slate-800 to-slate-900 p-8 rounded-3xl border-l-4 border-orange-500 shadow-2xl shadow-orange-500/5 hover:shadow-orange-500/10 transition-shadow duration-300">
+            <div key={i} className="bg-gradient-to-br from-slate-800 to-slate-900 p-8 rounded-3xl border-l-4 border-green-500 shadow-2xl shadow-green-500/5 hover:shadow-green-500/10 transition-shadow duration-300">
               <p className="italic text-gray-200 font-medium text-lg md:text-xl leading-relaxed">{voice}</p>
             </div>
           ))}
         </div>
       </Section>
 
-      {/* DOBRA 4: Transição */}
+      {/* DOBRA 4: Diagnóstico (Alívio da Culpa) */}
       <Section id="dobra-4" dark={false}>
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-4xl md:text-6xl font-black mb-12 leading-tight">
-            Pare de culpar seu time.<br />
-            <span className="text-gray-500 italic">Eles só precisam de um mapa.</span>
+            A culpa <span className="text-green-500">não é</span> de vocês.
           </h2>
-          <p className="text-xl md:text-2xl text-gray-300 leading-relaxed mb-16">
-            O problema não é a falta de vontade deles, é a falta de <span className="text-orange-400 font-bold border-b-4 border-orange-500 pb-1">processos claros</span>. Se você não escreve as regras, cada um cria as próprias.
+          <p className="text-gray-300 text-xl leading-relaxed mb-6">
+            Organizar as finanças a dois é difícil porque <strong>ninguém ensina isso na escola</strong>.
           </p>
-          <div className="space-y-6">
-            {[
-              'O "bom senso" não é um processo de vendas confiável.',
-              'Empresas que dependem de "vendedores estrelas" são frágeis.',
-              'Você merece ter uma empresa que fatura enquanto você dorme.'
-            ].map((item, i) => (
-              <div key={i} className="flex gap-6 p-6 bg-gradient-to-r from-orange-500/5 to-transparent rounded-2xl border border-orange-500/20 hover:border-orange-500/40 transition-colors">
-                <AlertTriangle className="text-orange-500 shrink-0 mt-1" size={28} />
-                <p className="text-gray-200 font-semibold text-lg md:text-xl text-left">{item}</p>
-              </div>
-            ))}
+          <p className="text-gray-300 text-xl leading-relaxed mb-6">
+            Vocês tentam usar aplicativos cheios de funções inúteis ou anotações perdidas no bloco de notas, mas a verdade é que falta uma ferramenta visual e feita especificamente para a rotina de um casal.
+          </p>
+          <div className="bg-green-500/10 p-8 rounded-3xl border border-green-500/30 mt-10">
+            <p className="text-green-400 font-bold text-xl">
+              A bagunça financeira não é falta de amor ou de vontade. É apenas falta da ferramenta certa para colocar tudo no lugar de forma simples.
+            </p>
           </div>
         </div>
       </Section>
 
       {/* DOBRA 5: Passo a Passo */}
       <Section id="dobra-5" className="text-center relative">
-        <h2 className="text-4xl md:text-6xl font-black mb-24 uppercase tracking-tight">O Caminho Mais <span className="text-orange-400">Curto</span></h2>
+        <h2 className="text-4xl md:text-6xl font-black mb-24 uppercase tracking-tight">Simples <span className="text-green-500">Assim:</span></h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-20 relative max-w-5xl mx-auto">
-          <div className="hidden md:block absolute top-12 left-[15%] right-[15%] h-1 bg-gradient-to-r from-transparent via-orange-500/40 to-transparent"></div>
+          <div className="hidden md:block absolute top-12 left-[15%] right-[15%] h-1 bg-gradient-to-r from-transparent via-green-500/40 to-transparent"></div>
           {[
-            { step: "01", title: "Compre e Receba", desc: "Acesso imediato ao Manual e entregáveis no seu e-mail." },
-            { step: "02", title: "Siga o Guia", desc: "Implementação guiada em 48h para não travar sua agenda." },
-            { step: "03", title: "Aplique Hoje", desc: "Rotinas e padrões rodando com sua equipe imediatamente." }
+            { step: "01", title: "Crie seu Acesso", desc: "Receba o link por e-mail, crie seu cadastro seguro e entre no sistema imediatamente." },
+            { step: "02", title: "Organize Rápido", desc: "Preencha suas informações de forma intuitiva. O sistema faz os cálculos sozinho." },
+            { step: "03", title: "Acesse de Qualquer Lugar", desc: "Acompanhe seus gastos pelo celular, tablet ou computador, sem instalar nada." }
           ].map((s, i) => (
             <div key={i} className="flex flex-col items-center group relative z-10">
-              <div className="w-24 h-24 bg-gradient-to-br from-orange-500 to-orange-600 text-white font-black text-4xl flex items-center justify-center rounded-3xl mb-10 shadow-[0_20px_50px_-15px_rgba(249,115,22,0.5)] transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+              <div className="w-24 h-24 bg-gradient-to-br from-green-500 to-green-600 text-white font-black text-4xl flex items-center justify-center rounded-3xl mb-10 shadow-[0_20px_50px_-15px_rgba(34,197,94,0.5)] transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
                 {s.step}
               </div>
               <h4 className="text-2xl md:text-3xl font-black mb-5 text-gray-100">{s.title}</h4>
@@ -238,28 +237,28 @@ const App: React.FC = () => {
         </div>
       </Section>
 
-      {/* DOBRA 6: Entregáveis */}
+      {/* DOBRA 6: Tudo que vai receber */}
       <Section id="dobra-6" dark={false}>
         <h2 className="text-4xl md:text-7xl font-black text-center mb-24 tracking-tight">
-          O que está <span className="text-orange-400">lá dentro:</span>
+          O que vocês <span className="text-green-500">levam hoje:</span>
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 gap-8 max-w-4xl mx-auto">
+          <div className="bg-gradient-to-br from-slate-800 to-slate-900 p-8 rounded-3xl border border-slate-700/50 flex flex-col md:flex-row gap-6 items-center">
+            <div className="bg-green-500/20 p-6 rounded-2xl text-green-500"><FileText size={40} /></div>
+            <div>
+              <h3 className="font-black text-2xl text-white mb-2">✅ Sistema Financeiro Casal em Dias</h3>
+              <p className="text-gray-300">Acesso vitalício à plataforma online. Não é Excel. Funciona no navegador do seu celular ou computador.</p>
+            </div>
+          </div>
+
           {[
-            { id: "01", title: "Regras de Ouro", desc: "Checklist prático para alinhar quem entra e quem já está na casa.", icon: <Award /> },
-            { id: "02", title: "Rotina Mínima", desc: "O padrão exato de execução diária para que nada seja esquecido.", icon: <Clock /> },
-            { id: "03", title: "Padrões de Conduta", desc: "O guia do que pode e o que não pode dentro da sua operação.", icon: <ShieldCheck /> },
-            { id: "04", title: "Scripts-base", desc: "Modelos curtos e diretos para falar com a equipe sem rodeios.", icon: <MessageCircle /> },
-            { id: "05", title: "Reunião de 15 Minutos", desc: "Pauta pronta para reuniões produtivas que não tomam tempo.", icon: <Users /> },
-            { id: "06", title: "Quadro de Metas", desc: "Como visualizar o progresso de forma simples e visual.", icon: <Target /> },
-            { id: "07", title: "Implementação 48h", desc: "O passo a passo para colocar o manual pra rodar agora.", icon: <Zap /> }
-          ].map((d, i) => (
-            <div key={i} className="bg-gradient-to-br from-slate-800 to-slate-900 p-8 rounded-3xl border border-slate-700/50 flex gap-6 hover:border-orange-500/50 hover:shadow-2xl hover:shadow-orange-500/10 transition-all duration-300 group">
-              <div className="text-orange-500 shrink-0 mt-1 bg-orange-500/10 p-5 rounded-2xl group-hover:scale-110 group-hover:bg-orange-500/20 transition-all duration-300">{d.icon}</div>
-              <div>
-                <span className="text-orange-400 text-xs font-black uppercase mb-2 block tracking-wider">Item {d.id}</span>
-                <h3 className="font-black text-xl md:text-2xl mb-3 text-gray-100">{d.title}</h3>
-                <p className="text-gray-400 text-sm md:text-base leading-relaxed font-medium">{d.desc}</p>
-              </div>
+            { title: "🎁 BÔNUS 1: Passo a passo prático de como usar", desc: "Um vídeo rápido mostrando exatamente como usar o sistema para organizar tudo em minutos." },
+            { title: "🎁 BÔNUS 2: Ebook Conversas Financeiras Sem Briga", desc: "O guia completo em PDF para alinhar as finanças com seu parceiro sem gerar conflitos." },
+            { title: "🎁 BÔNUS 3: Desafio 7 Dias de Organização Financeira a Dois", desc: "Um plano prático dia-a-dia para vocês colocarem a casa em ordem em apenas uma semana." }
+          ].map((bonus, i) => (
+            <div key={i} className="bg-slate-900/50 p-6 rounded-3xl border border-slate-700/50 hover:border-green-500/30 transition-colors">
+              <h3 className="font-bold text-xl text-green-400 mb-2">{bonus.title}</h3>
+              <p className="text-gray-400">{bonus.desc}</p>
             </div>
           ))}
         </div>
@@ -269,15 +268,15 @@ const App: React.FC = () => {
       <Section id="dobra-7">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-6xl mx-auto">
           <div className="bg-gradient-to-br from-green-900/20 to-slate-900 p-12 rounded-[48px] border-2 border-green-500/30 shadow-2xl shadow-green-500/10">
-            <h3 className="text-orange-400 font-black text-4xl mb-12 flex items-center gap-3">
-              <CircleCheck size={36} className="text-green-500" /> Isso é para você:
+            <h3 className="text-green-400 font-black text-4xl mb-12 flex items-center gap-3">
+              <CircleCheck size={36} className="text-green-500" /> É pra você que:
             </h3>
             <ul className="space-y-7">
               {[
-                "Cansado de repetir a mesma ordem 10x.",
-                "Sente que a equipe só trabalha com você em cima.",
-                "Quer delegar sem perder o controle da qualidade.",
-                "Deseja crescer sem aumentar seu estresse."
+                "Quer paz financeira dentro de casa.",
+                "Não tem paciência para planilhas complicadas de Excel.",
+                "Precisa organizar a vida financeira \"para ontem\".",
+                "Quer transparência total com seu parceiro(a)."
               ].map((item, i) => (
                 <li key={i} className="flex gap-5 items-start">
                   <CircleCheck className="text-green-500 shrink-0 mt-1" size={24} />
@@ -287,13 +286,12 @@ const App: React.FC = () => {
             </ul>
           </div>
           <div className="bg-gradient-to-br from-slate-800 to-slate-900 p-12 rounded-[48px] border border-slate-700/50 hover:border-red-500/30 transition-colors">
-            <h3 className="text-red-500 font-black text-4xl mb-12 italic">Não é para você:</h3>
+            <h3 className="text-red-500 font-black text-4xl mb-12 italic">NÃO é pra você se:</h3>
             <ul className="space-y-7">
               {[
-                "Busca uma 'fórmula mágica' sem esforço.",
-                "Não pretende abrir o manual e aplicar.",
-                "Prefere continuar apagando incêndios.",
-                "Acredita que processos engessam as pessoas."
+                "Procura uma \"fórmula mágica\" para ficar rico sem trabalho.",
+                "Não está disposto a tirar 5 minutos por semana para anotar os gastos.",
+                "Prefere continuar no escuro sem saber para onde vai o salário."
               ].map((item, i) => (
                 <li key={i} className="flex gap-5 items-start text-gray-300">
                   <span className="shrink-0 mt-1 text-2xl">❌</span>
@@ -306,119 +304,88 @@ const App: React.FC = () => {
       </Section>
 
       {/* DOBRA 8: Ancoragem */}
-      <Section id="dobra-8" dark={false} className="text-center overflow-hidden">
-        <h2 className="text-4xl md:text-6xl font-black mb-20 tracking-tight uppercase">
-          Um verdadeiro <span className="text-orange-400">Ativo</span> para sua empresa.
-        </h2>
-        <div className="bg-gradient-to-br from-slate-800 to-slate-900 p-12 md:p-24 rounded-[56px] border border-slate-700/50 relative shadow-2xl max-w-6xl mx-auto">
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-orange-500 opacity-[0.05] blur-[200px] pointer-events-none"></div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <div className="relative group mx-auto">
-              <div className="absolute -inset-6 bg-gradient-to-r from-orange-500 to-orange-600 opacity-20 blur-3xl group-hover:opacity-30 transition duration-1000"></div>
-              <img
-                src="/images/full-stack.png"
-                alt="Stack Completo: Manual + Bônus"
-                className="w-full max-w-[480px] rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-500 relative z-10"
-              />
-            </div>
-
-            <div className="text-left space-y-8">
-              <h4 className="text-4xl font-black italic text-gray-100">O que você leva:</h4>
-              <ul className="space-y-4 text-gray-300 font-semibold text-lg">
-                <li className="flex justify-between border-b border-slate-700 pb-4">
-                  <span>• Manual de Cultura (PDF)</span> <div className="flex items-center gap-2"><span className="text-gray-400 line-through decoration-red-500 decoration-2">R$ 197,00</span> <X className="text-red-500" size={20} strokeWidth={3} /></div>
-                </li>
-                <li className="flex justify-between border-b border-slate-700 pb-4">
-                  <span className="text-orange-400 font-bold text-base md:text-lg">🎁 Bônus: Como construir uma equipe que confia no líder e compra a cultura</span> <div className="flex items-center gap-2 shrink-0"><span className="text-gray-400 line-through decoration-red-500 decoration-2 text-sm md:text-base">R$ 97,00</span> <X className="text-red-500" size={20} strokeWidth={3} /></div>
-                </li>
-                <li className="flex justify-between border-b border-slate-700 pb-4">
-                  <span className="text-orange-400 font-bold text-base md:text-lg">🎁 Bônus: Como lidar com a saída de bons colaboradores</span> <div className="flex items-center gap-2 shrink-0"><span className="text-gray-400 line-through decoration-red-500 decoration-2 text-sm md:text-base">R$ 97,00</span> <X className="text-red-500" size={20} strokeWidth={3} /></div>
-                </li>
-
-              </ul>
-              <div className="pt-8 border-t border-slate-700">
-                <p className="text-gray-500 font-black line-through text-2xl">VALOR TOTAL: R$ 502,00</p>
-                <p className="text-white font-black text-4xl mt-3 italic">Apenas hoje por <span className="text-orange-400">R$ 67,00</span></p>
-              </div>
+      <Section id="dobra-8" dark={false} className="text-center">
+        <h2 className="text-3xl md:text-5xl font-black mb-10">Vamos <span className="text-green-500">recapitular...</span></h2>
+        <div className="max-w-4xl mx-auto bg-slate-900 p-10 rounded-3xl border border-slate-700">
+          <div className="text-left space-y-8">
+            <h4 className="text-4xl font-black italic text-gray-100">O que você leva:</h4>
+            <ul className="space-y-4 text-gray-300 font-semibold text-lg">
+              <li className="flex justify-between border-b border-slate-700 pb-4">
+                <span>• Sistema Online Casal em Dias</span> <div className="flex items-center gap-2"><span className="text-gray-400 line-through decoration-red-500 decoration-2">R$ 197,00</span> <X className="text-red-500" size={20} strokeWidth={3} /></div>
+              </li>
+              <li className="flex justify-between border-b border-slate-700 pb-4">
+                <span className="text-green-400 font-bold text-base md:text-lg">🎁 Bônus: Conversas Financeiras Sem Briga</span> <div className="flex items-center gap-2 shrink-0"><span className="text-gray-400 line-through decoration-red-500 decoration-2 text-sm md:text-base">R$ 47,00</span> <X className="text-red-500" size={20} strokeWidth={3} /></div>
+              </li>
+              <li className="flex justify-between border-b border-slate-700 pb-4">
+                <span className="text-green-400 font-bold text-base md:text-lg">🎁 Bônus: Desafio 7 Dias de Organização</span> <div className="flex items-center gap-2 shrink-0"><span className="text-gray-400 line-through decoration-red-500 decoration-2 text-sm md:text-base">R$ 47,00</span> <X className="text-red-500" size={20} strokeWidth={3} /></div>
+              </li>
+            </ul>
+            <div className="pt-8 border-t border-slate-700">
+              <p className="text-gray-500 font-black line-through text-2xl">VALOR TOTAL: R$ 291,00</p>
+              <p className="text-white font-black text-4xl mt-3 italic">Apenas hoje por <span className="text-green-500">R$ 67,00</span></p>
             </div>
           </div>
         </div>
       </Section>
 
-      {/* DOBRA 9: Preço + Botão */}
+      {/* DOBRA 9: Preço + CTA */}
       <Section id="dobra-9" className="relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-orange-500/5 to-transparent pointer-events-none"></div>
-        <div className="text-center mb-20 relative z-10">
-          <h2 className="text-5xl md:text-8xl font-black mb-8 uppercase tracking-tight leading-tight">
-            É sua vez de <span className="bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">liderar</span>.
-          </h2>
-          <p className="text-xl md:text-2xl text-gray-300 font-medium">Invista menos que o valor de um lanche para blindar sua operação comercial.</p>
+        <div className="absolute inset-0 bg-gradient-to-b from-green-500/5 to-transparent pointer-events-none"></div>
+        <div className="text-center relative z-10">
+          {/* Price displayed in BuyButton */}
         </div>
         <BuyButton showPrice={true} />
       </Section>
 
-      {/* DOBRA 10: Custo da Inércia */}
+      {/* DOBRA 10: Conversa Séria */}
       <Section id="dobra-10" dark={false} className="text-center">
-        <div className="max-w-3xl mx-auto">
-          <div className="mb-12 flex justify-center">
-            <div className="bg-red-500/10 p-6 rounded-full border-4 border-red-500/30">
-              <TrendingDown size={72} className="text-red-500 animate-bounce" />
-            </div>
-          </div>
-          <h2 className="text-4xl md:text-6xl font-black mb-16 leading-tight">Quanto custa <span className="text-red-500">NÃO</span> agir agora?</h2>
-          <div className="space-y-10 text-gray-300 text-xl md:text-2xl font-medium leading-relaxed">
-            <p>Se a sua equipe perder apenas <span className="text-orange-400 font-bold">1 venda por semana</span> de R$ 500,00 por falta de padrão, você está jogando fora <span className="text-white font-black text-3xl">R$ 2.000,00</span> por mês.</p>
-            <p>Em um ano, são <span className="text-red-500 font-black text-4xl">R$ 24.000,00 perdidos</span> por pura desorganização.</p>
-            <div className="bg-gradient-to-r from-orange-500/20 to-red-500/20 text-white p-10 rounded-3xl border-2 border-orange-500/40 italic shadow-2xl shadow-orange-500/20 mt-12">
-              <p className="text-2xl md:text-3xl font-bold leading-relaxed">
-                Você vai continuar pagando esse pedágio ou vai investir <span className="text-orange-400 font-black text-4xl">R$ 67</span> para parar esse vazamento hoje?
-              </p>
-            </div>
-          </div>
+        <h2 className="text-3xl md:text-5xl font-black mb-12">Quanto custa <span className="text-red-500">continuar do jeito que está?</span></h2>
+        <div className="max-w-3xl mx-auto text-xl text-gray-300 space-y-8">
+          <p>O dinheiro entrando e saindo sem controle. As discussões desgastando o amor dia após dia. O futuro dos sonhos ficando cada vez mais longe.</p>
+          <p className="text-2xl font-bold text-white">R$ 67,00 é menos do que uma pizza que vocês pedem no fim de semana.</p>
+          <p>Troque essa pizza momentânea pela paz financeira de vocês.</p>
         </div>
       </Section>
 
       {/* DOBRA 11: Autoridade */}
       <Section id="dobra-11">
-        <div className="flex flex-col md:flex-row items-center gap-16 bg-gradient-to-br from-slate-800 to-slate-900 p-12 md:p-24 rounded-[56px] border border-slate-700/50 mb-24 relative overflow-hidden shadow-2xl max-w-6xl mx-auto">
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-orange-500 opacity-[0.03] blur-[150px] pointer-events-none"></div>
-          <div className="shrink-0 relative group">
-            <div className="absolute -inset-6 bg-gradient-to-r from-orange-500 to-orange-600 opacity-20 blur-3xl rounded-full group-hover:opacity-40 transition"></div>
-            <img
-              src="/images/jairo-queiroz.jpg"
-              alt="Jairo Queiroz"
-              className="w-56 h-56 md:w-64 md:h-64 rounded-[48px] object-cover relative z-10 border-4 border-slate-700 shadow-2xl transform -rotate-2 group-hover:rotate-0 transition-all duration-500"
-            />
+        <div className="max-w-4xl mx-auto bg-slate-900 p-12 rounded-3xl border border-slate-700 flex flex-col md:flex-row items-center gap-10">
+          {/* Creator Image */}
+          <div className="w-48 h-48 md:w-64 md:h-64 bg-slate-800 rounded-3xl flex items-center justify-center shrink-0 border-4 border-slate-700 overflow-hidden shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500">
+            <img src="/images/lucas-layla.jpg" alt="Lucas e Layla" className="w-full h-full object-cover object-top" />
           </div>
-          <div className="text-left relative z-10">
-            <h3 className="text-5xl font-black mb-8 text-gray-100">Jairo Queiroz</h3>
-            <p className="text-gray-300 text-xl md:text-2xl leading-relaxed font-medium mb-8">
-              Empreendedor desde os 14 anos. Empresário há mais de 25 anos. Experiência prática em gestão, vendas e cultura de execução.
+          <div>
+            <h3 className="text-3xl font-black text-white mb-4">Quem somos?</h3>
+            <p className="text-gray-300 text-lg leading-relaxed">
+              Nós somos <strong>Lucas e Layla</strong>, casados há 4 anos.
             </p>
-            <div className="bg-slate-800/50 p-6 rounded-2xl border-l-4 border-orange-500">
-              <p className="text-gray-400 italic font-medium text-lg md:text-xl leading-relaxed">
-                "Eu não sou um guru. Sou um empresário que cansou de ver bons negócios quebrarem por falta de padrão. Este manual é o que eu uso."
-              </p>
-            </div>
+            <p className="text-gray-300 text-lg leading-relaxed mt-4">
+              Criamos o <strong>Casal em Dias</strong> porque sentimos na pele a dificuldade de organizar o dinheiro a dois. Depois de testar dezenas de planilhas complicadas, o Lucas (que é programador) decidiu criar um sistema próprio, focado na nossa realidade.
+            </p>
+            <p className="text-gray-300 text-lg leading-relaxed mt-4">
+              Hoje, nossa missão é ajudar outros casais a terem a mesma paz financeira que conquistamos.
+            </p>
           </div>
         </div>
-        <BuyButton showPrice={true} />
+        <div className="mt-12">
+          <BuyButton showPrice={false} />
+        </div>
       </Section>
 
       {/* DOBRA 12: FAQ + Footer */}
       <Section id="dobra-12" dark={false} className="pb-16">
-        <h2 className="text-4xl md:text-7xl font-black text-center mb-24 tracking-tight">Perguntas <span className="text-orange-400">Comuns</span></h2>
+        <h2 className="text-4xl md:text-7xl font-black text-center mb-24 tracking-tight">Dúvidas <span className="text-green-500">Frequentes</span></h2>
         <div className="max-w-4xl mx-auto space-y-6 mb-32">
           {[
-            { q: "O acesso é imediato?", a: "Sim. Assim que o pagamento for aprovado (Pix cai na hora), você recebe o link no e-mail cadastrado." },
-            { q: "Preciso de algum programa pago?", a: "Não. O manual é focado em processos e condutas que você implementa com papel, caneta ou as ferramentas que já usa." },
-            { q: "Funciona para equipes pequenas?", a: "Funciona para quem tem 1 vendedor ou 100. Padrão é padrão, independente do tamanho." },
-            { q: "E se eu não gostar do conteúdo?", a: "Você tem 7 dias. Se ler e achar que não te ajudou em nada, basta enviar um único e-mail para o suporte e devolvemos 100% do seu dinheiro." }
+            { q: "Preciso ter Excel ou computador?", a: "Não! O sistema é 100% online. Você acessa direto pelo navegador do seu celular ou computador, como se fosse um site." },
+            { q: "Funciona em qualquer celular?", a: "Sim, funciona em qualquer smartphone (Android ou iPhone) com acesso à internet." },
+            { q: "E se eu tiver dificuldades?", a: "Você terá acesso ao vídeo passo a passo mostrando exatamente onde clicar. É super intuitivo." },
+            { q: "Tenho que pagar mensalidade?", a: "Não. O pagamento é único e você tem acesso vitalício ao sistema e aos bônus." },
+            { q: "Como acesso o sistema?", a: "Após o pagamento, você recebe um e-mail para criar seu cadastro (login e senha) e acessar sua área exclusiva imediatamente." }
           ].map((faq, i) => (
-            <details key={i} className="group bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl border border-slate-700/50 overflow-hidden transition-all duration-300 hover:border-orange-500/50">
+            <details key={i} className="group bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl border border-slate-700/50 overflow-hidden transition-all duration-300 hover:border-green-500/50">
               <summary className="flex items-center justify-between p-8 md:p-10 cursor-pointer hover:bg-slate-800/50 transition-colors font-black text-xl md:text-2xl list-none select-none text-gray-100">
-                {faq.q} <ChevronDown className="group-open:rotate-180 transition-transform text-orange-500" size={28} />
+                {faq.q} <ChevronDown className="group-open:rotate-180 transition-transform text-green-500" size={28} />
               </summary>
               <div className="px-8 md:px-10 pb-8 md:pb-10 text-gray-300 font-medium text-lg md:text-xl leading-relaxed">
                 {faq.a}
@@ -428,32 +395,15 @@ const App: React.FC = () => {
         </div>
 
         <div className="pt-24 border-t border-slate-800">
-          <div className="text-center flex flex-col items-center gap-16">
-            <BuyButton showPrice={true} />
-
-            <footer className="space-y-12 w-full">
-              <div className="flex justify-center gap-10 opacity-60 hover:opacity-100 transition-opacity">
-                <img src="https://img.icons8.com/color/48/000000/visa.png" className="h-10" alt="Visa" />
-                <img src="https://img.icons8.com/color/48/000000/mastercard.png" className="h-10" alt="Mastercard" />
-                <img src="https://img.icons8.com/color/48/000000/pix.png" className="h-10" alt="Pix" />
-              </div>
-
-
-
-              <div className="flex justify-center gap-10 text-xs text-gray-600 underline font-bold">
-                <a href="[LINK_TERMOS]" className="hover:text-orange-500 transition-colors">Termos de Uso</a>
-                <a href="[LINK_PRIVACIDADE]" className="hover:text-orange-500 transition-colors">Políticas de Privacidade</a>
-              </div>
-
-              <div className="max-w-2xl mx-auto text-[10px] text-gray-700 leading-relaxed font-medium italic">
-                Aviso Legal: Os resultados podem variar de empresa para empresa. O sucesso depende da implementação rigorosa dos processos sugeridos. Este site não é afiliado ao Google ou Facebook.
-              </div>
-
-              <p className="text-gray-700 text-xs pb-10">
-                © {new Date().getFullYear()} Jairo Queiroz - Cultura Comercial de Elite.
-              </p>
-            </footer>
+          <div className="text-center max-w-2xl mx-auto">
+            <p className="text-2xl font-bold text-white mb-6">A decisão é de vocês.</p>
+            <p className="text-gray-300 mb-10">Continuar nas brigas e no descontrole ou pagar o preço de uma pizza para ter paz financeira?</p>
+            <BuyButton showPrice={false} />
           </div>
+
+          <footer className="mt-20 text-center opacity-50 text-xs">
+            <p>© {new Date().getFullYear()} Finanças de Casal. Todos os direitos reservados.</p>
+          </footer>
         </div>
       </Section>
 
