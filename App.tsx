@@ -137,7 +137,7 @@ const App: React.FC = () => {
         </div>
 
         <h1 className="text-3xl md:text-5xl font-extrabold leading-tight mb-6 tracking-tight">
-          A plataforma mais simples para vocês terem <span className="bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent">clareza total</span> das contas e pararem de brigar por dinheiro.
+          A plataforma mais simples para vocês terem <span className="text-green-500">clareza total</span> das contas e <span className="bg-green-500 text-white px-2 py-1 leading-normal box-decoration-clone">conquistarem tranquilidade financeira em 24h.</span>
         </h1>
 
         <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-10 leading-relaxed font-medium">
