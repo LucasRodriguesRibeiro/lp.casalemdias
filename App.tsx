@@ -65,7 +65,7 @@ const BuyButton = ({ showPrice = false }: { showPrice?: boolean }) => (
       <div className="text-center w-full bg-gradient-to-r from-green-500/10 via-green-500/5 to-green-500/10 p-6 rounded-3xl border border-green-500/20">
         <p className="text-gray-500 line-through text-sm mb-2 uppercase tracking-wider font-bold">De R$ 197,00 por apenas</p>
         <div className="flex items-baseline justify-center gap-3 mb-2">
-          <span className="text-5xl md:text-6xl font-black bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent">R$ 67,00</span>
+          <span className="text-5xl md:text-6xl font-black bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent">R$ 47,00</span>
         </div>
         <p className="text-lg text-green-400 font-bold">ou até 9x no cartão</p>
         <div className="mt-3 flex items-center justify-center gap-2 text-xs text-green-300/80">
@@ -322,7 +322,7 @@ const App: React.FC = () => {
             </ul>
             <div className="pt-8 border-t border-slate-700">
               <p className="text-gray-500 font-black line-through text-2xl">VALOR TOTAL: R$ 291,00</p>
-              <p className="text-white font-black text-4xl mt-3 italic">Apenas hoje por <span className="text-green-500">R$ 67,00</span></p>
+              <p className="text-white font-black text-4xl mt-3 italic">Apenas hoje por <span className="text-green-500">R$ 47,00</span></p>
             </div>
           </div>
         </div>
@@ -342,7 +342,7 @@ const App: React.FC = () => {
         <h2 className="text-3xl md:text-5xl font-black mb-12">Quanto custa <span className="text-red-500">continuar do jeito que está?</span></h2>
         <div className="max-w-3xl mx-auto text-xl text-gray-300 space-y-8">
           <p>O dinheiro entrando e saindo sem controle. As discussões desgastando o amor dia após dia. O futuro dos sonhos ficando cada vez mais longe.</p>
-          <p className="text-2xl font-bold text-white">R$ 67,00 é menos do que uma pizza que vocês pedem no fim de semana.</p>
+          <p className="text-2xl font-bold text-white">R$ 47,00 é menos do que uma pizza que vocês pedem no fim de semana.</p>
           <p>Troque essa pizza momentânea pela paz financeira de vocês.</p>
         </div>
       </Section>
