@@ -1,417 +1,308 @@
 import React, { useState, useEffect } from 'react';
 import {
   CheckCircle2,
-  Clock,
   ShieldCheck,
   Zap,
-  Users,
-  Target,
-  MessageCircle,
   ChevronDown,
   ArrowRight,
   Lock,
-  AlertTriangle,
-  Award,
-  CircleCheck,
-  TrendingDown,
-  Mail,
-  MapPin,
-  FileText,
-  Star,
   Sparkles,
-  X,
-  CreditCard,
-  DollarSign,
-  Heart
+  Target,
+  Users,
+  Heart,
+  TrendingUp,
+  FileText,
+  CreditCard
 } from 'lucide-react';
 
 // --- Shared Components ---
 
-// Barra de Urgência Fixa
+// Barra de Urgência Fixa (Simplificada para Mobile)
 const UrgencyBanner = () => (
-  <div className="sticky top-0 z-50 bg-gradient-to-r from-green-600 to-green-800 text-white text-center py-3 px-4 shadow-lg flex items-center justify-center gap-2 font-bold text-xs md:text-sm tracking-wide uppercase">
-    <Zap size={16} className="text-yellow-300 animate-pulse" fill="currentColor" />
-    <span>✨ O PRIMEIRO PASSO PARA UM CASAL SÁBIO</span>
+  <div className="bg-emerald-600 text-white text-center py-2 px-4 flex items-center justify-center gap-2 font-bold text-[10px] uppercase tracking-wide">
+    <Zap size={12} className="text-amber-300 animate-pulse" fill="currentColor" />
+    <span>Preço Promocional: Apenas R$ 47,00 hoje!</span>
   </div>
 );
 
-// Notificação de Prova Social
-const SocialProofToast = ({ name, visible }: { name: string; visible: boolean }) => {
-  if (!visible) return null;
-  return (
-    <div className={`fixed bottom-4 left-4 z-50 flex items-center gap-3 bg-white border border-slate-200 p-4 rounded-xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.1)] max-w-[300px] ${visible ? 'animate-slide-in-left' : 'animate-slide-out-left'}`}>
-      <div className="bg-green-500/10 p-2 rounded-full border border-green-500/20 shrink-0">
-        <CircleCheck size={20} className="text-green-600" />
-      </div>
-      <div>
-        <p className="text-slate-900 font-bold text-sm">{name}</p>
-        <p className="text-green-600 text-xs font-medium">acabou de garantir seu acesso!</p>
-      </div>
-    </div>
-  );
-};
-
-const Section = ({ id, children, className = "", dark = true }: { id: string, children?: React.ReactNode, className?: string, dark?: boolean }) => (
-  <section id={id} className={`py-12 px-6 md:py-16 ${dark ? 'bg-white' : 'bg-slate-50'} ${className}`}>
-    <div className="max-w-[1000px] mx-auto">
-      {children}
-    </div>
-  </section>
-);
-
-const BuyButton = ({ showPrice = false }: { showPrice?: boolean }) => (
-  <div className="flex flex-col items-center gap-6 w-full max-w-xl mx-auto">
-    {showPrice && (
-      <div className="text-center w-full bg-gradient-to-r from-green-500/10 via-green-500/5 to-green-500/10 p-6 rounded-3xl border border-green-500/20">
-        <p className="text-gray-500 line-through text-sm mb-2 uppercase tracking-wider font-bold">De R$ 197,00 por apenas</p>
-        <div className="flex items-baseline justify-center gap-3 mb-2">
-          <span className="text-5xl md:text-6xl font-black bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent">R$ 47,00</span>
-        </div>
-        <p className="text-lg text-green-600 font-bold">ou até 9x no cartão</p>
-        <div className="mt-3 flex items-center justify-center gap-2 text-xs text-slate-500">
-          <Sparkles size={14} />
-          <span className="font-semibold">Oferta por tempo limitado</span>
-        </div>
-      </div>
-    )}
+// Componente do Botão de Compra Primário (Otimizado para Mobile)
+const BuyButton = ({ text = "QUERO ACESSAR O SISTEMA", className = "" }: { text?: string, className?: string }) => (
+  <div className={`flex flex-col items-center gap-2.5 w-full ${className}`}>
     <a
       href="https://pay.hotmart.com/Q104137511T"
-      className="relative group bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold text-lg md:text-xl py-5 px-10 rounded-full w-full text-center flex items-center justify-center gap-3 shadow-[0_10px_30px_rgba(34,197,94,0.4)] hover:shadow-[0_15px_40px_rgba(34,197,94,0.6)] transition-all duration-300 transform hover:-translate-y-1 active:scale-[0.98]"
+      className="bg-emerald-600 text-white font-black text-base py-4 px-6 rounded-xl w-full text-center flex items-center justify-center gap-2 shadow-[0_8px_20px_rgba(16,185,129,0.3)] active:scale-95 transition-transform"
     >
-      <span className="relative z-10">QUERO ORGANIZAR MEU DINHEIRO AGORA</span>
-      <ArrowRight className="relative z-10 group-hover:translate-x-1 transition-transform" size={24} />
-      <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-green-500 rounded-full blur-md opacity-40 group-hover:opacity-60 transition-opacity"></div>
+      <span className="uppercase tracking-wide">{text}</span>
+      <ArrowRight size={18} />
     </a>
-    <div className="flex flex-wrap justify-center gap-4 text-[10px] md:text-xs font-bold uppercase tracking-widest text-slate-500">
-      <span className="flex items-center gap-1.5"><Lock size={14} className="text-green-600" /> Compra 100% Segura</span>
-      <span className="flex items-center gap-1.5"><ShieldCheck size={14} className="text-green-600" /> Garantia de 7 Dias</span>
-      <span className="flex items-center gap-1.5"><Zap size={14} className="text-green-600" /> Acesso Imediato</span>
+    <div className="flex justify-center gap-4 text-[10px] font-bold uppercase tracking-wider text-slate-400">
+      <span className="flex items-center gap-1"><Lock size={12} className="text-emerald-500" /> Seguro</span>
+      <span className="flex items-center gap-1"><ShieldCheck size={12} className="text-emerald-500" /> 7 Dias Garantia</span>
     </div>
   </div>
 );
 
-// --- App Principal ---
+export default function App() {
+  const [activeTab, setActiveTab] = useState(0);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
-const App: React.FC = () => {
-  const [notification, setNotification] = useState({ name: '', visible: false });
+  const toggleFaq = (index: number) => {
+    setOpenFaq(openFaq === index ? null : index);
+  };
+
+  const showcaseData = [
+    {
+      icon: <Sparkles size={14} />,
+      image: '/images/App1.png',
+      badge: 'Dashboard',
+      title: 'Visão Geral',
+      description: 'Veja para onde vai cada centavo com gráficos fáceis de entender.'
+    },
+    {
+      icon: <Target size={14} />,
+      image: '/images/app2.png',
+      badge: 'Orçamento',
+      title: 'Planejamento Mensal',
+      description: 'Defina limites de gastos no início do mês e evite surpresas.'
+    },
+    {
+      icon: <FileText size={14} />,
+      image: '/images/app3.png',
+      badge: 'Lançamentos',
+      title: 'Registro Rápido',
+      description: 'Adicione despesas diárias rapidamente direto pelo celular.'
+    },
+    {
+      icon: <Users size={14} />,
+      image: '/images/app4.png',
+      badge: 'Divisão',
+      title: 'Divisão Justa',
+      description: 'Calcule a contribuição de cada um com base nos salários.'
+    },
+    {
+      icon: <Heart size={14} />,
+      image: '/images/app5.png',
+      badge: 'Metas',
+      title: 'Sonhos do Casal',
+      description: 'Acompanhe a poupança conjunta para a próxima viagem ou casa.'
+    },
+    {
+      icon: <TrendingUp size={14} />,
+      image: '/images/app6.png',
+      badge: 'Análise',
+      title: 'Relatórios',
+      description: 'Compare receitas e despesas ao longo dos meses facilmente.'
+    }
+  ];
 
   useEffect(() => {
-    const buyers = [
-      "Carlos Silva", "Ana Paula", "Roberto Santos", "Maria Oliveira",
-      "João Pedro", "Fernanda Costa", "Lucas Mendes", "Juliana Almeida",
-      "Marcos Souza", "Patrícia Lima", "Rafael Oliveira", "Camila Santos",
-      "Bruno Ferreira", "Amanda Rodrigues", "Felipe Martins", "Larissa Gomes",
-      "Diego Nascimento", "Vanessa Pereira", "Thiago Costa", "Bianca Ribeiro"
-    ];
-
-    let timeoutId: ReturnType<typeof setTimeout>;
-
-    const showNotification = () => {
-      const name = buyers[Math.floor(Math.random() * buyers.length)];
-      setNotification({ name, visible: true });
-
-      setTimeout(() => {
-        setNotification(prev => ({ ...prev, visible: false }));
-      }, 3500);
-
-      const nextTime = Math.random() * 12000 + 8000;
-      timeoutId = setTimeout(showNotification, nextTime);
-    };
-
-    timeoutId = setTimeout(showNotification, 5000);
-
-    return () => clearTimeout(timeoutId);
+    const timer = setInterval(() => {
+      setActiveTab((prev) => (prev + 1) % showcaseData.length);
+    }, 2000);
+    return () => clearInterval(timer);
   }, []);
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 selection:bg-green-500 selection:text-white antialiased">
-      <UrgencyBanner />
-      <SocialProofToast name={notification.name} visible={notification.visible} />
+    // Wrapper restrito para emular layout Mobile mesmo no desktop
+    <div className="bg-slate-100 min-h-screen font-sans antialiased text-slate-800">
+      <div className="max-w-[480px] mx-auto bg-white min-h-screen shadow-2xl relative overflow-hidden flex flex-col">
+        
+        <UrgencyBanner />
 
-      {/* DOBRA 1: Promessa Principal */}
-      <Section id="dobra-1" className="text-center pt-20 md:pt-32 overflow-hidden relative">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-green-500 opacity-[0.08] blur-[150px] pointer-events-none"></div>
+        {/* 1. DOBRA PRINCIPAL (HERO) - Muito mais enxuta */}
+        <section className="pt-8 pb-10 px-5 text-center relative">
+          <h1 className="text-3xl font-black text-slate-900 leading-[1.15] mb-3 tracking-tight">
+            Organizem as finanças a dois em <span className="text-emerald-600 bg-emerald-50 px-1 rounded">10 minutos</span> por semana.
+          </h1>
+          <p className="text-sm text-slate-600 mb-6 font-medium leading-relaxed">
+            O aplicativo online mais simples para o casal ter clareza das contas e alinhar os sonhos financeiros. Sem planilhas de Excel.
+          </p>
 
-        <div className="inline-flex items-center gap-2 bg-green-500/10 border border-green-500/30 px-6 py-3 rounded-full text-green-700 text-xs md:text-sm font-black uppercase tracking-[0.3em] mb-8 shadow-lg shadow-green-500/10">
-          <Star size={18} className="animate-pulse" /> Sistema Financeiro para Casal
-        </div>
-
-        <h1 className="text-3xl md:text-5xl font-extrabold leading-tight mb-6 tracking-tight text-slate-900">
-          A plataforma mais simples para vocês terem <span className="text-green-600">clareza total</span> das contas e <span className="bg-green-500 text-white px-2 py-1 leading-normal box-decoration-clone">conquistarem tranquilidade financeira em 24h.</span>
-        </h1>
-
-        <p className="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto mb-10 leading-relaxed font-medium">
-          Sem planilhas complexas de Excel. Um sistema online, simples e intuitivo para acessar do celular ou computador.
-        </p>
-
-        {/* Mockup Placeholder */}
-        <div className="relative mx-auto w-full max-w-4xl group cursor-default mb-8">
-          <div className="absolute -inset-6 bg-gradient-to-r from-green-500 to-green-600 rounded-[32px] blur-[60px] opacity-15 group-hover:opacity-25 transition duration-1000"></div>
-          <div className="relative bg-transparent rounded-3xl overflow-hidden flex items-center justify-center transform group-hover:scale-[1.005] transition-transform duration-500">
+          {/* Hero Mockup Image */}
+          <div className="relative mx-auto mb-8 flex justify-center px-4">
             <img
               src="/images/hero-mockup.png"
-              alt="Dashboard da Planilha Financeira Casal em Dias"
-              className="w-full h-auto object-contain rounded-xl relative z-10 drop-shadow-2xl"
+              alt="App Casal em Dias"
+              className="w-full h-auto object-contain scale-110 drop-shadow-2xl"
             />
           </div>
-        </div>
-      </Section>
 
-      {/* DOBRA 2: Princípios Bíblicos */}
-      <Section id="dobra-2" dark={false}>
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-black text-slate-900">Princípios financeiros <span className="text-green-600">segundo a Bíblia</span></h2>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-          {[
-            { quote: "Planejamento traz paz para dentro de casa.", ref: "📖 Provérbios 21:5 – Os planos do diligente conduzem à prosperidade." },
-            { quote: "Casais unidos na organização colhem frutos juntos.", ref: "📖 Eclesiastes 4:9 – Melhor é serem dois do que um." },
-            { quote: "Administrar bem é um ato de sabedoria.", ref: "📖 Provérbios 24:3 – Com sabedoria se constrói a casa." },
-            { quote: "Quem cuida do pouco está pronto para o muito.", ref: "📖 Lucas 16:10 – Fiel no pouco, fiel no muito." }
-          ].map((item, i) => (
-            <div key={i} className="bg-white text-slate-900 p-8 rounded-2xl rounded-tl-none shadow-xl border border-slate-100 hover:border-green-500/30 transition-all duration-300 hover:-translate-y-1">
-              <p className="font-bold text-xl mb-4 text-slate-800 leading-tight">"{item.quote}"</p>
-              <div className="flex items-start gap-3 bg-slate-50 p-4 rounded-xl border border-slate-200/60">
-                <span className="text-sm text-slate-600 font-medium italic leading-relaxed">{item.ref}</span>
+          <BuyButton />
+        </section>
+
+        {/* 2. SHOWCASE (TELA A TELA) */}
+        <section className="py-10 bg-slate-50 border-y border-slate-200/60">
+          <div className="px-5">
+            <h2 className="text-xl font-black text-slate-900 leading-tight mb-5 text-center">
+              Tudo que vocês precisam em um só lugar
+            </h2>
+
+            {/* Tab Display Panel (Carrossel Automático) */}
+            <div className="bg-white border border-slate-200 rounded-xl p-3 shadow-sm">
+              <div className="relative rounded-lg border border-slate-100 overflow-hidden bg-slate-950 aspect-[16/10] mb-4">
+                <img
+                  src={showcaseData[activeTab].image}
+                  alt={showcaseData[activeTab].title}
+                  className="w-full h-full object-cover animate-slide-in-right"
+                  key={activeTab}
+                />
               </div>
+              <h3 className="text-base font-bold text-slate-900 mb-1">{showcaseData[activeTab].title}</h3>
+              <p className="text-slate-600 text-xs leading-relaxed">
+                {showcaseData[activeTab].description}
+              </p>
             </div>
-          ))}
-        </div>
-      </Section>
+          </div>
+        </section>
 
-      {/* DOBRA 3: Pedra no Sapato */}
-      <Section id="dobra-3">
-        <h2 className="text-3xl md:text-5xl font-black text-center mb-20 tracking-tight leading-tight">
-          Você já se pegou <span className="bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent">pensando isso?</span>
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-          {[
-            '"Para onde foi todo o nosso dinheiro esse mês?"',
-            '"A gente trabalha tanto, ganha bem, mas nunca sobra nada."',
-            '"Será que ele(a) está gastando escondido de mim?"',
-            '"Não aguento mais esse clima pesado toda vez que chega um boleto."',
-            '"Desse jeito nunca vamos conseguir viajar ou trocar de carro."'
-          ].map((voice, i) => (
-            <div key={i} className="bg-white p-8 rounded-3xl border-l-4 border-green-500 shadow-xl shadow-green-500/5 hover:shadow-green-500/10 transition-shadow duration-300 border border-slate-100">
-              <p className="italic text-slate-700 font-medium text-lg md:text-xl leading-relaxed">{voice}</p>
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      {/* DOBRA 4: Diagnóstico (Alívio da Culpa) */}
-      <Section id="dobra-4" dark={false}>
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-4xl md:text-6xl font-black mb-12 leading-tight text-slate-900">
-            A culpa <span className="text-green-500">não é</span> de vocês.
+        {/* 3. ANTES E DEPOIS (O PORQUÊ) */}
+        <section className="py-10 px-5 bg-white">
+          <h2 className="text-xl font-black text-slate-900 text-center mb-6 leading-tight">
+            Por que organizar juntos?
           </h2>
-          <p className="text-slate-600 text-xl leading-relaxed mb-6">
-            Organizar as finanças a dois é difícil porque <strong>ninguém ensina isso na escola</strong>.
-          </p>
-          <p className="text-slate-600 text-xl leading-relaxed mb-6">
-            Vocês tentam usar aplicativos cheios de funções inúteis ou anotações perdidas no bloco de notas, mas a verdade é que falta uma ferramenta visual e feita especificamente para a rotina de um casal.
-          </p>
-          <div className="bg-green-500/5 p-8 rounded-3xl border border-green-500/20 mt-10">
-            <p className="text-green-700 font-bold text-xl">
-              A bagunça financeira não é falta de amor ou de vontade. É apenas falta da ferramenta certa para colocar tudo no lugar de forma simples.
-            </p>
-          </div>
-        </div>
-      </Section>
 
-      {/* DOBRA 5: Passo a Passo */}
-      <Section id="dobra-5" className="text-center relative">
-        <h2 className="text-4xl md:text-6xl font-black mb-24 uppercase tracking-tight">Simples <span className="text-green-500">Assim:</span></h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-20 relative max-w-5xl mx-auto">
-          <div className="hidden md:block absolute top-12 left-[15%] right-[15%] h-1 bg-gradient-to-r from-transparent via-green-500/40 to-transparent"></div>
-          {[
-            { step: "01", title: "Crie seu Acesso", desc: "Receba o link por e-mail, crie seu cadastro seguro e entre no sistema imediatamente." },
-            { step: "02", title: "Organize Rápido", desc: "Preencha suas informações de forma intuitiva. O sistema faz os cálculos sozinho." },
-            { step: "03", title: "Acesse de Qualquer Lugar", desc: "Acompanhe seus gastos pelo celular, tablet ou computador, sem instalar nada." }
-          ].map((s, i) => (
-            <div key={i} className="flex flex-col items-center group relative z-10">
-              <div className="w-24 h-24 bg-gradient-to-br from-green-500 to-green-600 text-white font-black text-4xl flex items-center justify-center rounded-3xl mb-10 shadow-[0_20px_50px_-15px_rgba(34,197,94,0.3)] transform group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
-                {s.step}
-              </div>
-              <h4 className="text-2xl md:text-3xl font-black mb-5 text-slate-900">{s.title}</h4>
-              <p className="text-slate-600 font-medium text-base md:text-lg leading-relaxed">{s.desc}</p>
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      {/* DOBRA 6: Tudo que vai receber */}
-      <Section id="dobra-6" dark={false}>
-        <h2 className="text-4xl md:text-7xl font-black text-center mb-24 tracking-tight">
-          O que vocês <span className="text-green-500">levam hoje:</span>
-        </h2>
-        <div className="grid grid-cols-1 gap-8 max-w-4xl mx-auto">
-          <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-xl shadow-slate-200/50 flex flex-col md:flex-row gap-6 items-center">
-            <div className="bg-green-100 p-6 rounded-2xl text-green-600"><FileText size={40} /></div>
-            <div>
-              <h3 className="font-black text-2xl text-slate-900 mb-2">✅ Sistema Financeiro Casal em Dias</h3>
-              <p className="text-slate-600">Acesso vitalício à plataforma online. Não é Excel. Funciona no navegador do seu celular ou computador.</p>
-            </div>
-          </div>
-
-          {[
-            { title: "🎁 BÔNUS 1: Passo a passo prático de como usar", desc: "Um vídeo rápido mostrando exatamente como usar o sistema para organizar tudo em minutos." },
-            { title: "🎁 BÔNUS 2: Ebook Conversas Financeiras Sem Briga", desc: "O guia completo em PDF para alinhar as finanças com seu parceiro sem gerar conflitos." },
-            { title: "🎁 BÔNUS 3: Desafio 7 Dias de Organização Financeira a Dois", desc: "Um plano prático dia-a-dia para vocês colocarem a casa em ordem em apenas uma semana." }
-          ].map((bonus, i) => (
-            <div key={i} className="bg-slate-50 p-6 rounded-3xl border border-slate-200 hover:border-green-500/30 transition-colors">
-              <h3 className="font-bold text-xl text-green-700 mb-2">{bonus.title}</h3>
-              <p className="text-slate-600">{bonus.desc}</p>
-            </div>
-          ))}
-        </div>
-      </Section>
-
-      {/* DOBRA 7: Pra quem é */}
-      <Section id="dobra-7">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-6xl mx-auto">
-          <div className="bg-gradient-to-br from-green-50 to-white p-12 rounded-[48px] border-2 border-green-500/20 shadow-xl shadow-green-500/5">
-            <h3 className="text-green-700 font-black text-4xl mb-12 flex items-center gap-3">
-              <CircleCheck size={36} className="text-green-600" /> É pra você que:
-            </h3>
-            <ul className="space-y-7">
-              {[
-                "Quer paz financeira dentro de casa.",
-                "Não tem paciência para planilhas complicadas de Excel.",
-                "Precisa organizar a vida financeira \"para ontem\".",
-                "Quer transparência total com seu parceiro(a)."
-              ].map((item, i) => (
-                <li key={i} className="flex gap-5 items-start">
-                  <CircleCheck className="text-green-600 shrink-0 mt-1" size={24} />
-                  <span className="text-slate-700 font-semibold text-lg">{item}</span>
+          <div className="flex flex-col gap-4">
+            {/* Antes */}
+            <div className="bg-rose-50/50 border border-rose-100 rounded-xl p-5">
+              <h3 className="text-rose-700 font-bold text-sm uppercase tracking-wide mb-3 flex items-center gap-2">
+                ❌ Sem o Sistema
+              </h3>
+              <ul className="space-y-2.5 text-slate-600 text-xs">
+                <li className="flex items-start gap-2">
+                  <span className="text-rose-500 font-bold">✕</span>
+                  <span>Falta de controle claro sobre gastos e boletos.</span>
                 </li>
-              ))}
-            </ul>
-          </div>
-          <div className="bg-white p-12 rounded-[48px] border border-slate-200 hover:border-red-500/30 transition-colors shadow-lg shadow-slate-200/50">
-            <h3 className="text-red-500 font-black text-4xl mb-12 italic">NÃO é pra você se:</h3>
-            <ul className="space-y-7">
-              {[
-                "Procura uma \"fórmula mágica\" para ficar rico sem trabalho.",
-                "Não está disposto a tirar 5 minutos por semana para anotar os gastos.",
-                "Prefere continuar no escuro sem saber para onde vai o salário."
-              ].map((item, i) => (
-                <li key={i} className="flex gap-5 items-start text-slate-600">
-                  <span className="shrink-0 mt-1 text-2xl">❌</span>
-                  <span className="font-medium italic text-lg">{item}</span>
+                <li className="flex items-start gap-2">
+                  <span className="text-rose-500 font-bold">✕</span>
+                  <span>Sensação de que o dinheiro some no fim do mês.</span>
                 </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </Section>
+              </ul>
+            </div>
 
-      {/* DOBRA 8: Ancoragem */}
-      <Section id="dobra-8" dark={false} className="text-center">
-        <h2 className="text-3xl md:text-5xl font-black mb-10">Vamos <span className="text-green-500">recapitular...</span></h2>
-        <div className="max-w-4xl mx-auto bg-slate-50 p-10 rounded-3xl border border-slate-200 shadow-xl shadow-slate-200/50">
-          <div className="text-left space-y-8">
-            <h4 className="text-4xl font-black italic text-slate-900">O que você leva:</h4>
-            <ul className="space-y-4 text-slate-600 font-semibold text-lg">
-              <li className="flex justify-between border-b border-slate-200 pb-4">
-                <span>• Sistema Online Casal em Dias</span> <div className="flex items-center gap-2"><span className="text-slate-400 line-through decoration-red-500 decoration-2">R$ 197,00</span> <X className="text-red-500" size={20} strokeWidth={3} /></div>
-              </li>
-              <li className="flex justify-between border-b border-slate-200 pb-4">
-                <span className="text-green-600 font-bold text-base md:text-lg">🎁 Bônus: Conversas Financeiras Sem Briga</span> <div className="flex items-center gap-2 shrink-0"><span className="text-slate-400 line-through decoration-red-500 decoration-2 text-sm md:text-base">R$ 47,00</span> <X className="text-red-500" size={20} strokeWidth={3} /></div>
-              </li>
-              <li className="flex justify-between border-b border-slate-200 pb-4">
-                <span className="text-green-600 font-bold text-base md:text-lg">🎁 Bônus: Desafio 7 Dias de Organização</span> <div className="flex items-center gap-2 shrink-0"><span className="text-slate-400 line-through decoration-red-500 decoration-2 text-sm md:text-base">R$ 47,00</span> <X className="text-red-500" size={20} strokeWidth={3} /></div>
-              </li>
-            </ul>
-            <div className="pt-8 border-t border-slate-200">
-              <p className="text-slate-400 font-black line-through text-2xl">VALOR TOTAL: R$ 291,00</p>
-              <p className="text-slate-900 font-black text-4xl mt-3 italic">Apenas hoje por <span className="text-green-600">R$ 47,00</span></p>
+            {/* Depois */}
+            <div className="bg-emerald-50/50 border border-emerald-200 rounded-xl p-5 shadow-sm">
+              <h3 className="text-emerald-700 font-bold text-sm uppercase tracking-wide mb-3 flex items-center gap-2">
+                ✅ Com o Sistema
+              </h3>
+              <ul className="space-y-2.5 text-slate-700 text-xs">
+                <li className="flex items-start gap-2">
+                  <span className="text-emerald-600 font-bold">✓</span>
+                  <span>Finanças em harmonia e com divisão justa.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-emerald-600 font-bold">✓</span>
+                  <span>Planejamento claro para realizar os sonhos do casal.</span>
+                </li>
+              </ul>
             </div>
           </div>
-        </div>
-      </Section>
+        </section>
 
-      {/* DOBRA 9: Preço + CTA */}
-      <Section id="dobra-9" className="relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-green-500/5 to-transparent pointer-events-none"></div>
-        <div className="text-center relative z-10">
-          {/* Price displayed in BuyButton */}
-        </div>
-        <BuyButton showPrice={true} />
-      </Section>
+        {/* 4. OFERTA ESPECIAL */}
+        <section className="py-12 px-5 bg-slate-50 border-t border-slate-200/60">
+          <div className="bg-white border-2 border-emerald-500 rounded-2xl overflow-hidden shadow-lg">
+            <div className="bg-emerald-600 text-white text-center py-1.5 font-bold text-[10px] uppercase tracking-widest">
+              Acesso Vitalício + Bônus
+            </div>
 
-      {/* DOBRA 10: Conversa Séria */}
-      <Section id="dobra-10" dark={false} className="text-center">
-        <h2 className="text-3xl md:text-5xl font-black mb-12">Quanto custa <span className="text-red-500">continuar do jeito que está?</span></h2>
-        <div className="max-w-3xl mx-auto text-xl text-slate-600 space-y-8">
-          <p>O dinheiro entrando e saindo sem controle. As discussões desgastando o amor dia após dia. O futuro dos sonhos ficando cada vez mais longe.</p>
-          <p className="text-2xl font-bold text-slate-900">R$ 47,00 é menos do que uma pizza que vocês pedem no fim de semana.</p>
-          <p>Troque essa pizza momentânea pela paz financeira de vocês.</p>
-        </div>
-      </Section>
-
-      {/* DOBRA 11: Autoridade */}
-      <Section id="dobra-11">
-        <div className="max-w-4xl mx-auto bg-white p-12 rounded-3xl border border-slate-200 shadow-xl shadow-slate-200/50 flex flex-col md:flex-row items-center gap-10">
-          {/* Creator Image */}
-          <div className="w-48 h-48 md:w-64 md:h-64 bg-slate-100 rounded-3xl flex items-center justify-center shrink-0 border-4 border-slate-200 overflow-hidden shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500">
-            <img src="/images/lucas-layla.jpg" alt="Lucas e Layla" className="w-full h-full object-cover object-top" />
-          </div>
-          <div>
-            <h3 className="text-3xl font-black text-slate-900 mb-4">Quem somos?</h3>
-            <p className="text-slate-600 text-lg leading-relaxed">
-              Nós somos <strong>Lucas e Layla</strong>, casados há 4 anos.
-            </p>
-            <p className="text-slate-600 text-lg leading-relaxed mt-4">
-              Criamos o <strong>Casal em Dias</strong> porque sentimos na pele a dificuldade de organizar o dinheiro a dois. Depois de testar dezenas de planilhas complicadas, o Lucas (que é programador) decidiu criar um sistema próprio, focado na nossa realidade.
-            </p>
-            <p className="text-slate-600 text-lg leading-relaxed mt-4">
-              Hoje, nossa missão é ajudar outros casais a terem a mesma paz financeira que conquistamos.
-            </p>
-          </div>
-        </div>
-        <div className="mt-12">
-          <BuyButton showPrice={false} />
-        </div>
-      </Section>
-
-      {/* DOBRA 12: FAQ + Footer */}
-      <Section id="dobra-12" dark={false} className="pb-16">
-        <h2 className="text-4xl md:text-7xl font-black text-center mb-24 tracking-tight">Dúvidas <span className="text-green-500">Frequentes</span></h2>
-        <div className="max-w-4xl mx-auto space-y-6 mb-32">
-          {[
-            { q: "Preciso ter Excel ou computador?", a: "Não! O sistema é 100% online. Você acessa direto pelo navegador do seu celular ou computador, como se fosse um site." },
-            { q: "Funciona em qualquer celular?", a: "Sim, funciona em qualquer smartphone (Android ou iPhone) com acesso à internet." },
-            { q: "E se eu tiver dificuldades?", a: "Você terá acesso ao vídeo passo a passo mostrando exatamente onde clicar. É super intuitivo." },
-            { q: "Tenho que pagar mensalidade?", a: "Não. O pagamento é único e você tem acesso vitalício ao sistema e aos bônus." },
-            { q: "Como acesso o sistema?", a: "Após o pagamento, você recebe um e-mail para criar seu cadastro (login e senha) e acessar sua área exclusiva imediatamente." }
-          ].map((faq, i) => (
-            <details key={i} className="group bg-white rounded-3xl border border-slate-200 overflow-hidden transition-all duration-300 hover:border-green-500/50 shadow-sm">
-              <summary className="flex items-center justify-between p-8 md:p-10 cursor-pointer hover:bg-slate-50 transition-colors font-black text-xl md:text-2xl list-none select-none text-slate-900">
-                {faq.q} <ChevronDown className="group-open:rotate-180 transition-transform text-green-600" size={28} />
-              </summary>
-              <div className="px-8 md:px-10 pb-8 md:pb-10 text-slate-600 font-medium text-lg md:text-xl leading-relaxed">
-                {faq.a}
+            <div className="p-6">
+              <div className="space-y-3 mb-6">
+                {[
+                  "Acesso ao App Casal em Dias",
+                  "Guia de Conversas (Bônus)",
+                  "100% Seguro (Sem dados bancários)"
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-2.5 text-sm text-slate-700 font-medium">
+                    <CheckCircle2 size={16} className="text-emerald-500 shrink-0" />
+                    <span>{item}</span>
+                  </div>
+                ))}
               </div>
-            </details>
-          ))}
-        </div>
 
-        <div className="pt-24 border-t border-slate-200">
-          <div className="text-center max-w-2xl mx-auto">
-            <p className="text-2xl font-bold text-slate-900 mb-6">A decisão é de vocês.</p>
-            <p className="text-slate-600 mb-10">Continuar nas brigas e no descontrole ou pagar o preço de uma pizza para ter paz financeira?</p>
-            <BuyButton showPrice={false} />
+              <div className="border-t border-slate-100 pt-5 text-center">
+                <span className="text-slate-400 line-through text-xs font-semibold uppercase tracking-wider block mb-1">
+                  De R$ 97,00 por apenas
+                </span>
+                
+                <div className="flex items-baseline justify-center gap-1">
+                  <span className="text-slate-900 text-xl font-black">R$</span>
+                  <span className="text-slate-900 text-5xl font-black tracking-tight">47,00</span>
+                </div>
+                
+                <p className="text-emerald-600 font-bold text-xs mt-1.5">
+                  Pagamento único • Sem mensalidades
+                </p>
+              </div>
+
+              <BuyButton text="Garantir Meu Acesso" className="mt-6" />
+              
+              <div className="mt-4 flex justify-center items-center gap-1.5 text-[10px] font-semibold text-slate-400 uppercase tracking-wider">
+                <CreditCard size={12} /> Aceita Pix, Boleto e Cartão
+              </div>
+            </div>
           </div>
+        </section>
 
-          <footer className="mt-20 text-center opacity-50 text-xs">
-            <p>© {new Date().getFullYear()} Finanças de Casal. Todos os direitos reservados.</p>
-          </footer>
-        </div>
-      </Section>
+        {/* 5. FAQ */}
+        <section className="py-10 px-5 bg-white border-t border-slate-200/60">
+          <h2 className="text-xl font-black text-slate-900 text-center mb-6 leading-tight">
+            Dúvidas Frequentes
+          </h2>
 
+          <div className="space-y-3">
+            {[
+              {
+                q: "Preciso pagar mensalidade?",
+                a: "Não. O pagamento de R$ 47,00 é único e o acesso é vitalício."
+              },
+              {
+                q: "Preciso saber muito de Excel?",
+                a: "Não! O Casal em Dias NÃO é uma planilha de Excel ou Google Sheets. É um aplicativo online extremamente simples, feito para qualquer pessoa usar."
+              },
+              {
+                q: "Como recebo o acesso e uso?",
+                a: "Logo após o pagamento, você recebe um link online no e-mail. Basta criar sua conta com e-mail e senha, e usar direto no navegador do celular ou computador."
+              },
+              {
+                q: "Precisa de dados bancários?",
+                a: "Nunca. Nosso aplicativo é 100% seguro. Nós não pedimos e nem conectamos nenhuma conta bancária sua."
+              }
+            ].map((faq, index) => (
+              <div
+                key={index}
+                className="border border-slate-200 rounded-xl overflow-hidden bg-slate-50"
+              >
+                <button
+                  onClick={() => toggleFaq(index)}
+                  className="w-full flex items-center justify-between p-4 text-left font-bold text-sm text-slate-900"
+                >
+                  <span>{faq.q}</span>
+                  <ChevronDown
+                    size={16}
+                    className={`text-slate-400 transition-transform ${
+                      openFaq === index ? 'rotate-180 text-emerald-600' : ''
+                    }`}
+                  />
+                </button>
+                <div
+                  className={`transition-all duration-200 ease-in-out ${
+                    openFaq === index ? 'max-h-40 border-t border-slate-200 bg-white p-4' : 'max-h-0 opacity-0'
+                  }`}
+                >
+                  <p className="text-slate-600 text-xs leading-relaxed">
+                    {faq.a}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <footer className="py-6 text-center border-t border-slate-200 bg-slate-50 text-[10px] text-slate-400">
+          <p>© {new Date().getFullYear()} Casal em Dias. Todos os direitos reservados.</p>
+        </footer>
+
+      </div>
     </div>
   );
-};
-
-export default App;
+}

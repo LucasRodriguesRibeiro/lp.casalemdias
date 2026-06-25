@@ -18,6 +18,10 @@
   .animate-slide-out-left {
     animation: slideOutLeft 0.5s ease-in forwards;
   }
+
+  .animate-slide-in-right {
+    animation: slideInRight 0.5s ease-out forwards;
+  }
 }
 
 @keyframes fadeIn {
@@ -53,5 +57,17 @@
   to {
     opacity: 0;
     transform: translateX(-100%);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
